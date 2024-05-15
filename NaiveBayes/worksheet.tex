@@ -1,0 +1,133 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{float}
+\usepackage{multirow}
+
+% name of worksheet
+\newcommand{\worksheetname}{Naive Bayes and Classifier Evaluation}
+
+
+\begin{document}
+
+{\Large\textbf{\worksheetname}}\\\rule{\linewidth}{0.5mm}
+\pagenumbering{gobble}
+
+\section{Naive Bayes}
+You are building a naive bayes model for language detection using character bigrams, with the following training data:
+
+\begin{table}[!ht]
+\large
+    \centering
+    \begin{tabular}{|l|l|l|}
+    \hline
+        Language & Sentence & Character Bigrams \\ \hline
+        english & learn & le ea ar rn \\ \hline
+        english & ablaze & ab bl la az ze \\ \hline
+        spanish & hablo & ha ab bl lo \\ \hline
+    \end{tabular}
+\end{table}
+
+\subsection{N-Gram Counts (raw)}
+Record the counts of each character n-gram for each language below:
+
+\begin{table}[!ht]
+\large
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+         &  ab&  ar&  az&  bl&  ea&  ha&  la&  le&  lo&rn &ze\\ \hline
+         \multirow{ 2}{*}{spanish}& \hspace{.35in} & \hspace{.35in} & \hspace{.35in} & \hspace{.35in} & \hspace{.35in} & \hspace{.35in} & \hspace{.35in} &\hspace{.35in}  & \hspace{.35in} & \hspace{.35in} & \hspace{.35in} \\ 
+         &  &  &  &  &  &  &  &  &  & &\\ \hline
+         \multirow{ 2}{*}{english}&  &  &  &  &  &  &  &  &  & &\\ 
+         &  &  &  &  &  &  &  &  &  & &\\ 
+    \hline
+    \end{tabular}
+\end{table}
+
+\subsection{N-Gram Counts (smoothed)}
+Now in the table below, convert your raw n-gram counts to smoothed versions, using Laplace (add-one) smoothing.
+
+\begin{table}[!ht]
+\large
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+         &  ab&  ar&  az&  bl&  ea&  ha&  la&  le&  lo&rn &ze\\ \hline
+         \multirow{ 2}{*}{spanish}& \hspace{.35in} & \hspace{.35in} & \hspace{.35in} & \hspace{.35in} & \hspace{.35in} & \hspace{.35in} & \hspace{.35in} &\hspace{.35in}  & \hspace{.35in} & \hspace{.35in} & \hspace{.35in} \\ 
+         &  &  &  &  &  &  &  &  &  & &\\ \hline
+         \multirow{ 2}{*}{english}&  &  &  &  &  &  &  &  &  & &\\ 
+         &  &  &  &  &  &  &  &  &  & &\\ 
+    \hline
+    \end{tabular}
+\end{table}
+\subsection{Classify!}
+You want to classify a new single-word sentence, $s$: \texttt{able}.
+
+Calculate $P(spanish|s)$ and $P(english|s)$. You should ignore unknown character bigrams, and use add-one smoothing.\\\\
+
+\noindent {\Large $P(spanish|s) =$}
+
+\vspace{.5in}
+\noindent {\Large $P(english|s) =$}
+
+
+\pagebreak
+
+\section{Classifier Evaluation}
+You built a sentiment classification model, and get the following results on your test set:
+
+\begin{table}[!ht]
+\large
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+        Actual Label & Predicted Label \\ \hline
+        pos & pos \\ \hline
+        pos & pos \\ \hline
+        neg & pos \\ \hline
+        pos & pos \\ \hline
+        pos & pos \\ \hline
+        pos & pos \\ \hline
+        pos & pos \\ \hline
+        pos & pos \\ \hline
+    \end{tabular}
+\end{table}
+
+\subsection{What is the accuracy of your model?}
+\vspace{1in}
+
+\subsection{Is this a \textit{good} model? Why or why not?}
+\vspace{1in}
+
+\subsection{Fill in the confusion matrix for your model:}
+
+\def\arraystretch{1.5}
+\begin{table}[!h]
+\large
+\centering
+\begin{tabular}{|ll|ll|}
+\hline
+                             &     & \multicolumn{2}{l|}{Actual} \\ \cline{3-4} 
+                             &     & \multicolumn{1}{l|}{pos} & neg \\ \hline
+\multicolumn{1}{|l|}{Predicted} & pos & \multicolumn{1}{l|}{}    &     \\ \cline{2-4} 
+\multicolumn{1}{|l|}{}       & neg & \multicolumn{1}{l|}{}    &     \\ \hline
+\end{tabular}
+\label{undefined}
+\end{table}
+
+\subsection{Compute additional statistics based on the confusion matrix:}
+
+
+\begin{table}[ht!]
+    \large
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+        True Positives (tp) & False Positives (fp) & False Negatives (fn) & Precision (p) & Recall (r) \\ \hline
+         &  &  &  & \\ 
+         &  &  &  & \\ \hline
+    \end{tabular}
+\end{table}
+
+
+\end{document}

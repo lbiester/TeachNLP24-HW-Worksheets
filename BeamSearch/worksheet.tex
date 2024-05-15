@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{float}
+
+% name of worksheet
+\newcommand{\worksheetname}{Beam Search for Text Generation}
+
+
+\begin{document}
+
+{\Large\textbf{\worksheetname}}\\\rule{\linewidth}{0.5mm}
+\pagenumbering{gobble}
+
+\section{Beam Search}
+In this problem, you will use the beam search algorithm to generate text given the prompt ``The sun is shining''. To get the probabilities, you should use the \texttt{next\_token\_probs} function in the beam search colab notebook that is linked on the course website.
+
+\textbf{The first step is performed for you. Perform as many steps as you can. Use a beam width of 2, and turn the sheet sideways!}
+\begin{figure}[H]
+    \centering
+\includegraphics[width=0.2\textwidth]{img/beam_search.png}
+\end{figure}
+
+\newpage
+\section{Evaluating Generated Text with BLEU Score}
+Compute the modified bigram precision given the following two reference texts:
+
+\textbf{Reference 1:} The sun is shining on the horizon
+
+\textbf{Reference 2:} The sun shines on the horizon
+
+
+
+\begin{table}[H]
+    \LARGE
+    \centering
+    \begin{tabular}{|l|p{1in}|p{1in}|} \hline 
+         Candidate Text&  $p_1$& $p_2$\\ \hline 
+         The shining sun rises over the horizon& & \\ \hline 
+         Over the horizon is the sun&  & \\ \hline
+    \end{tabular}
+\end{table}
+
+\textit{If you have extra time, you can compute precision scores for larger values of n.}
+
+\end{document}

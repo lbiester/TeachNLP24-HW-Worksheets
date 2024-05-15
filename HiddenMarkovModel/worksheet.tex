@@ -1,0 +1,100 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{makecell}
+
+% special commands for formatting
+\newcommand{\fillspace}{\hspace{.95in}}
+\newcommand{\inftygrey}{\textcolor{lightgray}{$-\infty$}}
+\newcommand{\cellspace}{\Gape[1in]}
+\setlength\parindent{0pt}
+
+% name of worksheet
+\newcommand{\worksheetname}{Part of Speech Tagging with Hidden Markov Models}
+
+
+\begin{document}
+
+{\Large\textbf{\worksheetname}}\\\rule{\linewidth}{0.5mm}
+\pagenumbering{gobble}
+
+\section{Sequence Probability} You are trying to compute the log probability of the tag sequence ``\texttt{V P V}'' given the sequence of words ``\texttt{ski on snow}''. This would be represented as $$\log(P(\texttt{V P V}|\texttt{ski on snow}))$$
+
+Remember that with the assumptions we will make in our HMM tagger,
+\begin{equation*}
+\log{(P(t_1...t_n|w_1...w_n))}=\log{ \left( \prod_{i=1}^{n} P(w_i|t_i)P(t_i|t_{i-1})\right)} = \sum_{i=1}^{n} \left( \log{P(w_i|t_i)} + \log{P(t_i|t_{i-1})} \right) 
+\end{equation*}
+
+We will state that $P(t_1|t_{0}) = P(t_1|<s>)$, where \texttt{<s>} is a special tag indicating the start of the sequence.
+
+\subsection{Which probabilities?}
+Without writing out any numerical probabilities, complete equation below to show the conditional probabilities you must add.\\
+
+\noindent $\log{(P(\texttt{ski}|\texttt{V}))} + \log{(P(\texttt{V}|\texttt{<s>}))} +$
+
+\vspace{1in}
+\subsection{Plugging in numbers}
+
+Imagine your HMM is defined by the following initial, transition, and emission \textbf{log} probabilities. The initial probabilities represent $P(t|<\text{s}>)$.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l|rrr}
+tag & V & N & P \\ \hline
+log prob & -3 & -3 & -3
+\end{tabular}
+\caption{Initial \textbf{log} probabilities}
+\end{table}
+
+\begin{minipage}{0.5\textwidth}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l|rrr}
+         & \multicolumn{3}{c}{second tag}\\
+         first tag &  V& N & P\\ \hline 
+         V& -4 & -2 & -2 \\
+         N& -3 & -2 & -1 \\
+         P& -5 & -2 & -4\\
+    \end{tabular}
+    \caption{Transition \textbf{log} probabilities}
+\end{table}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l|rrr} 
+         & \multicolumn{3}{c}{word}\\
+         tag &  ski&  on& snow\\ \hline 
+         V&  -6 & \inftygrey & -5 \\
+         N&  -5 & \inftygrey & -3\\ 
+         P& \inftygrey & -1 & \inftygrey \\
+    \end{tabular}
+    \caption{Emission \textbf{log} probabilities}
+\end{table}
+\end{minipage}
+
+\vspace{.25in}
+
+\noindent Use the probabilities above to compute $$\log(P(\texttt{V P V}|\texttt{ski on snow}))$$
+
+\newpage
+
+\section{Viterbi Algorithm}
+\subsection{Completing the $viterbi$ table}
+Using the initial, transition, and emission \textbf{log probabilities} from the previous page, fill out the table representing the execution of the Viterbi algorithm. Your final answers in each box should be in the form of log probabilities (for $argmax$, log probabilities are suitable). Keep track of backpointers, either by writing arrows or writing the tag that led to the maximum probability in each box you fill out.
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|c|@{\fillspace}c@{\fillspace}|@{\fillspace}c@{\fillspace}|@{\fillspace}c@{\fillspace}|} \hline 
+         &   ski&  on& snow\\ \hline
+         V&  \cellspace &  & \\ \hline 
+         N&  \cellspace &  & \\ \hline 
+         P&  \cellspace &  & \\ \hline 
+    \end{tabular}
+    \label{tab:my_label}
+\end{table}
+\subsection{Finding the final sequence}
+What is the most probable POS sequence identified by the Viterbi algorithm?
+\end{document}

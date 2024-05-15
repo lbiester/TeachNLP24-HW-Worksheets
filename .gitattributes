@@ -1,0 +1,4 @@
+NaiveBayes/data/dev.tsv filter=lfs diff=lfs merge=lfs -text
+NaiveBayes/data/train.tsv filter=lfs diff=lfs merge=lfs -text
+HiddenMarkovModel/data/POS_dev.txt filter=lfs diff=lfs merge=lfs -text
+HiddenMarkovModel/data/POS_train.txt filter=lfs diff=lfs merge=lfs -text
