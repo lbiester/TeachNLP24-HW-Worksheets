@@ -28,7 +28,7 @@ def main():
     emission_log_probs = {
         "V": {"ski": -6, "on": float("-inf"), "snow": -5},
         "N": {"ski": -5, "on": float("-inf"), "snow": -3},
-        "P": {"ski": float("-inf"), "on": -1}, "snow": float("-inf")
+        "P": {"ski": float("-inf"), "on": -1, "snow": float("-inf")}
     }
 
     tagger.set_model_params(init_log_probs, transition_log_probs, emission_log_probs)
